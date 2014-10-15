@@ -1,9 +1,5 @@
 .note {
 	background: lightgray;
-border: 1px solid darkred;
-border-radius: 5px;
-/* padding: 10px 30px; */
-/* margin: 10px; */
 width: 476px;
 height: 32px;
 
@@ -19,13 +15,30 @@ display: inline-block;
 
 .label {
 	width: 50px;
-	padding: 5px;
-	color: white;
-	background: lightgray;
-	display: inline-block;
-	height: 0px;
+padding: 5px;
+color: white;
+text-align: center;
+vertical-align: top;
+background: lightgray;
+display: inline-block;
+height: 0px;
 }
 
+
+
+.on2 {
+	background: rgb(88, 92, 194);
+}
+
+.box {
+	border: 5px solid gray;
+	width: 476px;
+	margin: 20px auto;
+}
+
+.flash {
+	background: rgb(108, 148, 162);
+}
 .on {
-	background: blue;
+	background: rgb(240, 208, 107);
 }

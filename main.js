@@ -156,17 +156,19 @@ $(document).on('ready', function() {
 //////////  song being played /////////////
 
 var song = [rest, rest, rest, rest, rest, rest, rest, rest];
-
+var noteBars = ['.note1', '.note2', '.note3', '.note4', '.note5', '.note6', '.note7', '.note8'];
 var nI = 0;
 var player = setInterval(function(){
 		console.log('tick');
 		console.log('nI: ', nI)
 		createOscillator(song[nI]);
+		$(noteBars[nI]).toggleClass('flash');
+		// $('.on').addClass('on2');
 		
 		nI++;
 		if (nI === song.length) {
 			nI = 0;
-		}}, 250);
+		}}, 100);
 
 ////////////// pads /////////////////////
 
@@ -189,9 +191,13 @@ var player = setInterval(function(){
 	// 	console.log($(this).closest('.note').attr('name'));
 	// });
 
-	var noteSelect = function(num, clickedOn) {
+	var noteSelect = function(num, clickedOn, prev, cn) {
 		var thisNote = $(clickedOn).closest('.note').attr('name')
-		if (song[num] !== thisNote) {
+		$(clickedOn).toggleClass('on');
+		if ((thisNote !== cn) && (cn !== rest)) {
+			$(prev).toggleClass('on');
+		}
+		if (thisNote !== cn) {			
 			if ( thisNote === 'palo') {
 				song[num] = palo;
 			} else if ( thisNote === 'dhalo') {
@@ -218,60 +224,71 @@ var player = setInterval(function(){
 				song[num] = rehi;
 			} else if ( thisNote === 'gahi') {
 				song[num] = gahi;
-			} else {
+			} 
+		} else {
 			song[num] = rest;
-			}
-		}
-
-
-		console.log('song num', song[num]);
+			thisNote = rest;
+		}		
+		cn = thisNote;
+		return cn;		
 	}
 
+	var currentNote1 = rest;
 	$(document).on('click', '.note1', function(){
 		var clickedOn = $(this);
-		noteSelect(0, clickedOn);
-		$(clickedOn).toggleClass('on');
-		if (previousNote1 !== this ) {
-		$( previousNote1 ).toggleClass('on');
-	}
-		previousNote1 = $(this);
-		
+		currentNote1 = noteSelect(0, clickedOn, previousNote1, currentNote1);
+		console.log('song 0', song[0]);
+		previousNote1 = clickedOn;
 		
 	});
 
+	var currentNote2 = rest;
 	$(document).on('click', '.note2', function(){
 		var clickedOn = $(this);
-		noteSelect(1, clickedOn);
+		currentNote2 = noteSelect(1, clickedOn, previousNote2, currentNote2);
+		previousNote2 = clickedOn;
 	});
 
+	var currentNote3 = rest;
 	$(document).on('click', '.note3', function(){
 		var clickedOn = $(this);
-		noteSelect(2, clickedOn);
+		currentNote3 = noteSelect(2, clickedOn, previousNote3, currentNote3);
+		previousNote3 = clickedOn;
 	});
 
+	var currentNote4 = rest;
 	$(document).on('click', '.note4', function(){
 		var clickedOn = $(this);
-		noteSelect(3, clickedOn);
+		currentNote4 = noteSelect(3, clickedOn, previousNote4, currentNote4);
+		previousNote4 = clickedOn;
 	});
 
+	var currentNote5 = rest;
 	$(document).on('click', '.note5', function(){
 		var clickedOn = $(this);
-		noteSelect(4, clickedOn);
+		currentNote5 = noteSelect(4, clickedOn, previousNote5, currentNote5);
+		previousNote5 = clickedOn;
 	});
 
+	var currentNote6 = rest;
 	$(document).on('click', '.note6', function(){
 		var clickedOn = $(this);
-		noteSelect(5, clickedOn);
+		currentNote6 = noteSelect(5, clickedOn, previousNote6, currentNote6);
+		previousNote6 = clickedOn;
 	});
 
+	var currentNote7 = rest;
 	$(document).on('click', '.note7', function(){
 		var clickedOn = $(this);
-		noteSelect(6, clickedOn);
+		currentNote7 = noteSelect(6, clickedOn, previousNote7, currentNote7);
+		previousNote7 = clickedOn;
 	});
 
+	var currentNote8 = rest;
 	$(document).on('click', '.note8', function(){
 		var clickedOn = $(this);
-		noteSelect(7, clickedOn);
+		currentNote8 = noteSelect(7, clickedOn, previousNote8, currentNote8);
+		previousNote8 = clickedOn;
 	});
 
 
